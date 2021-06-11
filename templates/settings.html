@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/settings.css')}}">
+<script defer src="{{url_for('static', filename='js/settings.js')}}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Settings</h1>
+    {% for filetype, filecolor in settings.filetypes.items() %}
+    <div class="color-input-div">
+        <label for="{{filetype}}-color">{{filetype|capitalize}}:</label>
+        <input type="color" name='{{filetype}}-color' id='{{filetype}}-color' value="{{filecolor}}">
+    </div>
+    {% endfor %}
+    <div class="btn" id="save-btn">Save</div>
+</div>
+{% endblock %}

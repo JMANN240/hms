@@ -1,3 +1,10 @@
+:root {
+    --audio-color: var(--prim-shadow);
+    --video-color: var(--prim-shadow);
+    --image-color: var(--prim-shadow);
+    --text-color: var(--prim-shadow);
+}
+
 #site-body {
     width: 100vw;
     display: flex;
@@ -6,4 +13,24 @@
     align-items: stretch;
     align-content: flex-start;
     justify-content: flex-start;
+}
+
+.card.audio {
+    -webkit-box-shadow: 0 2.5px 0 0 var(--audio-color), 0 2.5px 20px 0 var(--audio-color);
+    box-shadow: 0 2.5px 0 0 var(--audio-color), 0 2.5px 20px 0 var(--audio-color);
+}
+
+.card.video {
+    -webkit-box-shadow: 0 2.5px 0 0 var(--video-color), 0 2.5px 20px 0 var(--video-color);
+    box-shadow: 0 2.5px 0 0 var(--video-color), 0 2.5px 20px 0 var(--video-color);
+}
+
+.card.image {
+    -webkit-box-shadow: 0 2.5px 0 0 var(--image-color), 0 2.5px 20px 0 var(--image-color);
+    box-shadow: 0 2.5px 0 0 var(--image-color), 0 2.5px 20px 0 var(--image-color);
+}
+
+.card.text {
+    -webkit-box-shadow: 0 2.5px 0 0 var(--text-color), 0 2.5px 20px 0 var(--text-color);
+    box-shadow: 0 2.5px 0 0 var(--text-color), 0 2.5px 20px 0 var(--text-color);
 }
