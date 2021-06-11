@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --prim: #ffffff;
+        --prim-shadow: #d0d0d0;
+        --prim-shadow-sec: #c0c0c0;
+        --sec: #000000;
+        --light: #ffff00;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --prim: #202020;
+        --prim-shadow: #101010;
+        --prim-shadow-sec: #000000;
+        --sec: #ffffff;
+        --light: #00ffff;
+    }
+}
+
+* {
+    color: var(--sec);
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scrollbar-width: none;
+}
+
+body {
+    background-color: var(--prim);
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+#site-header {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+#site-header div {
+    display: flex;
+    justify-content: center;
+}
+
+.word-btn {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-decoration: none;
+    font-size: 3vmin;
+    margin: 1vmin;
+    -webkit-box-shadow: 0 4px 0 0 var(--prim-shadow-sec),0 4px 10px 2px var(--prim-shadow);
+    box-shadow: 0 4px 0 0 var(--prim-shadow-sec),0 4px 10px 2px var(--prim-shadow);
+    border-radius: 1vmin;
+    margin: 1vmin;
+    padding: 0.5vmin;
+}
+
+.word-btn:hover {
+    -webkit-box-shadow: 0 3px 0 0 var(--prim-shadow-sec),0 3px 7.5px 1.5px var(--prim-shadow);
+    box-shadow: 0 3px 0 0 var(--prim-shadow-sec),0 3px 7.5px 1.5px var(--prim-shadow);
+    transform: translateY(1px);
+}
+
+.word-btn:active {
+    -webkit-box-shadow: 0 0 0 0 var(--prim-shadow-sec), 0 0 0 0 var(--prim-shadow);
+    box-shadow: 0 0 0 0 var(--prim-shadow-sec), 0 0 0 0 var(--prim-shadow);
+    transform: translateY(4px);
+}
+
+#site-messages {
+    width: 100vw;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#site-body {
+    flex: 1 1 auto;
+}
+
+.card {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2vmin;
+    border-radius: 2vmin;
+    -webkit-box-shadow: 0 2.5px 0 0 var(--prim-shadow), 0 2.5px 20px 0 var(--prim-shadow);
+    box-shadow: 0 2.5px 0 0 var(--prim-shadow), 0 2.5px 20px 0 var(--prim-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 17vw;
+    margin: 2vw;
+    padding: 2vw;
+}
+
+.card.audio {
+    -webkit-box-shadow: 0 2.5px 0 0 #ff0000, 0 2.5px 20px 0 #ff0000;
+    box-shadow: 0 2.5px 0 0 #ff0000, 0 2.5px 20px 0 #ff0000;
+}
+
+.card.video {
+    -webkit-box-shadow: 0 2.5px 0 0 #00ff40, 0 2.5px 20px 0 #00ff40;
+    box-shadow: 0 2.5px 0 0 #00ff40, 0 2.5px 20px 0 #00ff40;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2vmin;
+    text-decoration: none;
+    border-radius: 0.5vw;
+    -webkit-box-shadow:0 2.5px 5px 1px var(--prim-shadow);
+    box-shadow:0 2.5px 5px 1px var(--prim-shadow);
+    padding: 0.5vw;
+}

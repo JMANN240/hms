@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Media Server</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/global.css')}}">
+        <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon-16x16.png')}}" sizes="16x16">
+        <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon-32x32.png')}}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon-96x96.png')}}" sizes="96x96">
+        <script defer src="{{url_for('static', filename='js/jquery-3.6.0.js')}}"></script>
+        {% block header %}{% endblock %}
+    </head>
+    <body>
+        <div id="site-header">
+            <div>
+                <a href="/" id="logo" class="word-btn">HMS</a>
+            </div>
+            <div>
+                <a href="/settings" id="settings" class="word-btn">Settings</a>
+            </div>
+        </div>
+        <div id="site-messages">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="card"><h2>{{ message }}</h2></div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div id="site-body">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
