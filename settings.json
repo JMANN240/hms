@@ -1,1 +1,11 @@
-{"filetypes": {"audio": "#ff0000", "video": "#00ff40", "image": "#0040ff", "text": "#ffffff"}}
+{
+    "filetypes": {
+        "audio": "#ff0000", 
+        "video": "#00ff40", 
+        "image": "#0040ff", 
+        "text": "#ffffff"
+    }, 
+    "search_paths": [
+        "media"
+    ]
+}

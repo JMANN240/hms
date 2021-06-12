@@ -7,6 +7,7 @@ This is a minimalist home media server powered by flask that can be used to shar
 ## Usage
 
 1. Install dependencies listed in requirements.txt. Usually this can be done with `python3 -m pip install -r requirements.txt` but may be different depending on your environment.
-2. Run main.py with your python interpreter. This was developed with Python 3.8.0 but should work with others.
-3. Put the media you want to server in the `media` directory.
-4. Connect to the serving computer using its IP address on port 8000.
+2. Create a `media` directory inside of the `hms` directory and put the media you want to serve in it.
+3. You can alter settings.json to include more paths to search in.
+4. Run main.py with your python interpreter. This was developed with Python 3.8.0 but should work with others.
+5. Connect to the serving computer using its IP address on port 8000.

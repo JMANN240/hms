@@ -8,10 +8,10 @@
 {% block content %}
 {% for file in files %}
     <div class="card{{' ' + file.type if file.type in settings.filetypes.keys()}}" style="flex-direction: column;">
-        {{file.filename}}
+        {{file.name}}
         <div style="width: 100%; margin: 1vw; display: flex; flex-direction: row; justify-content: space-around;">
-            <a href="{{url_for('media', filename=file.file)}}?as_attachment=false" class="btn">View</a>
-            <a href="{{url_for('media', filename=file.file)}}?as_attachment=true" class="btn">Download</a>
+            <a href="/file?filepath={{file.path}}&as_attachment=false" class="btn">View</a>
+            <a href="/file?filepath={{file.path}}&as_attachment=true" class="btn">Download</a>
         </div>
     </div>
 {% endfor %}

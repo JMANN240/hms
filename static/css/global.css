@@ -99,9 +99,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 17vw;
-    margin: 2vw;
-    padding: 2vw;
+    width: 12vw;
+    margin: 1vw;
+    padding: 1vw;
 }
 
 .btn {
