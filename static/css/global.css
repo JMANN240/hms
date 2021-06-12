@@ -98,6 +98,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-wrap: anywhere;
     justify-content: space-between;
     width: 12vw;
     margin: 1vw;

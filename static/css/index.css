@@ -16,21 +16,21 @@
 }
 
 .card.audio {
-    -webkit-box-shadow: 0 2.5px 0 0 var(--audio-color), 0 2.5px 20px 0 var(--audio-color);
-    box-shadow: 0 2.5px 0 0 var(--audio-color), 0 2.5px 20px 0 var(--audio-color);
+    -webkit-box-shadow: 0 2.5px 0 0 var(--audio-color), 0 2.5px 10px 0 var(--audio-color);
+    box-shadow: 0 2.5px 0 0 var(--audio-color), 0 2.5px 10px 0 var(--audio-color);
 }
 
 .card.video {
-    -webkit-box-shadow: 0 2.5px 0 0 var(--video-color), 0 2.5px 20px 0 var(--video-color);
-    box-shadow: 0 2.5px 0 0 var(--video-color), 0 2.5px 20px 0 var(--video-color);
+    -webkit-box-shadow: 0 2.5px 0 0 var(--video-color), 0 2.5px 10px 0 var(--video-color);
+    box-shadow: 0 2.5px 0 0 var(--video-color), 0 2.5px 10px 0 var(--video-color);
 }
 
 .card.image {
-    -webkit-box-shadow: 0 2.5px 0 0 var(--image-color), 0 2.5px 20px 0 var(--image-color);
-    box-shadow: 0 2.5px 0 0 var(--image-color), 0 2.5px 20px 0 var(--image-color);
+    -webkit-box-shadow: 0 2.5px 0 0 var(--image-color), 0 2.5px 10px 0 var(--image-color);
+    box-shadow: 0 2.5px 0 0 var(--image-color), 0 2.5px 10px 0 var(--image-color);
 }
 
 .card.text {
-    -webkit-box-shadow: 0 2.5px 0 0 var(--text-color), 0 2.5px 20px 0 var(--text-color);
-    box-shadow: 0 2.5px 0 0 var(--text-color), 0 2.5px 20px 0 var(--text-color);
+    -webkit-box-shadow: 0 2.5px 0 0 var(--text-color), 0 2.5px 10px 0 var(--text-color);
+    box-shadow: 0 2.5px 0 0 var(--text-color), 0 2.5px 10px 0 var(--text-color);
 }
