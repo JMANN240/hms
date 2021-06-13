@@ -8,19 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    with open('settings.json') as settings_file:
-        settings = json.load(settings_file)
-    files = []
-    for path in settings['search_paths']:
-        for f in os.listdir(path):
-            if isfile(join(path, f)):
-                file_path = join(path, f)
-                file_name = splitext(f)[0]
-                file_guess = guess_type(f)[0]
-                file_type = file_guess.split('/')[0] if file_guess is not None else "unknown"
-                files.append({"path": file_path, "name": file_name, "type": file_type})
-    print(files)
-    return render_template('index.html', files = files, settings = settings)
+    return render_template('index.html')
 
 @app.route('/settings')
 def settings():
@@ -28,11 +16,27 @@ def settings():
         settings = json.load(settings_file)
     return render_template('settings.html', settings = settings)
 
-@app.route('/file')
-def file():
+@app.route('/media')
+def media():
     filepath = request.args.get('filepath')
     as_attachment = request.args.get('as_attachment') == "true"
     return send_file(filepath, as_attachment=as_attachment)
+
+@app.route('/api/media')
+def api_media():
+    with open('settings.json') as settings_file:
+        settings = json.load(settings_file)
+    search = request.args.get('search')
+    files = []
+    for path in settings['search_paths']:
+        for f in os.listdir(path):
+            if isfile(join(path, f)) and search.lower() in f.lower():
+                file_path = join(path, f)
+                file_name = splitext(f)[0]
+                file_guess = guess_type(f)[0]
+                file_type = file_guess.split('/')[0] if file_guess is not None else "unknown"
+                files.append({"path": file_path, "name": file_name, "type": file_type})
+    return {'files': files}
 
 @app.route('/api/settings', methods=['GET', 'POST'])
 def api_settings():

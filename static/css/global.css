@@ -126,3 +126,14 @@ body {
     -webkit-box-shadow:0 0 0 0 var(--prim-shadow);
     box-shadow:0 0 0 0 var(--prim-shadow);
 }
+
+input {
+    background-color: var(--prim);
+    font-family: 'Roboto', sans-serif;
+    font-size: 2vmin;
+    border-radius: 0.5vw;
+    -webkit-box-shadow: 0 2.5px 5px 0 var(--prim-shadow), 0 2.5px 0 0 var(--prim-shadow);
+    box-shadow: 0 2.5px 5px 0 var(--prim-shadow), 0 2.5px 0 0 var(--prim-shadow);
+    padding: 0.5vw;
+    margin: 0.5vw;
+}

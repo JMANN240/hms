@@ -6,13 +6,8 @@
 {% endblock %}
 
 {% block content %}
-{% for file in files %}
-    <div class="card{{' ' + file.type if file.type in settings.filetypes.keys()}}" style="flex-direction: column;">
-        {{file.name}}
-        <div style="width: 100%; margin: 1vw; display: flex; flex-direction: row; justify-content: space-around;">
-            <a href="/file?filepath={{file.path}}&as_attachment=false" class="btn">View</a>
-            <a href="/file?filepath={{file.path}}&as_attachment=true" class="btn">Download</a>
-        </div>
-    </div>
-{% endfor %}
+<div id="media-header">
+    <input type="text" id="search" placeholder="search">
+</div>
+<div id="media"></div>
 {% endblock %}
