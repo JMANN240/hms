@@ -7,5 +7,6 @@
     }, 
     "search_paths": [
         "media"
-    ]
+    ],
+    "client_upload_path": "media"
 }

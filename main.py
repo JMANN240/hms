@@ -43,6 +43,9 @@ def api_media():
         return {'files': files}
     
     if request.method == 'POST':
+        with open('settings.json') as settings_file:
+            settings = json.load(settings_file)
+
         file = request.files.get('file')
     
         if not file:
@@ -55,8 +58,8 @@ def api_media():
             flash("No file selected")
             return redirect('/')
         
-        filename = secure_filename(file.filename)
-        file.save(join('media', filename))
+        filename = file.filename
+        file.save(join(settings['client_upload_path'], filename))
         return "200"
 
 @app.route('/api/settings', methods=['GET', 'POST'])
