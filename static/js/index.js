@@ -1,7 +1,7 @@
-var load_media = (search) => {
+var load_media = () => {
     $.ajax({
         type: 'GET',
-        url: `/api/media?search=${search}`,
+        url: `/api/media?search=${$('#search').val()}`,
         success: (res) => {
             $('#media').empty();
             for (let file of res.files) {
@@ -30,9 +30,38 @@ $(document).ready(() => {
             }
         }
     });
-    load_media('');
+    load_media();
 });
 
 $('#search').on("input", (e) => {
-    load_media(e.target.value);
+    load_media();
+});
+
+$('#new-file').on('change', (e) => {
+    var fd = new FormData();
+    console.log(fd);
+    var files = $('#new-file')[0].files;
+    if (files.length > 0) {
+        fd.append('file',files[0]);
+        $.ajax({
+            type: 'POST',
+            url: '/api/media',
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: () => {
+                $('label[for="new-file"]').addClass('good-flash');
+                setTimeout(() => {
+                    $('label[for="new-file"]').removeClass('good-flash');
+                }, 1000);
+                load_media();
+            },
+            failure: () => {
+                $('label[for="new-file"]').addClass('bad-flash');
+                setTimeout(() => {
+                    $('label[for="new-file"]').removeClass('bad-flash');
+                }, 1000);
+            }
+        });
+    }
 });

@@ -1,10 +1,13 @@
 import os, pathlib, json
 from os.path import isfile, join, splitext
 from mimetypes import guess_type
-from flask import Flask, send_file, request
+from flask import Flask, send_file, request, flash, redirect
 from flask.templating import render_template
+from werkzeug.utils import secure_filename
+
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/')
 def index():
@@ -22,21 +25,39 @@ def media():
     as_attachment = request.args.get('as_attachment') == "true"
     return send_file(filepath, as_attachment=as_attachment)
 
-@app.route('/api/media')
+@app.route('/api/media', methods=['GET', 'POST'])
 def api_media():
-    with open('settings.json') as settings_file:
-        settings = json.load(settings_file)
-    search = request.args.get('search')
-    files = []
-    for path in settings['search_paths']:
-        for f in os.listdir(path):
-            if isfile(join(path, f)) and search.lower() in f.lower():
-                file_path = join(path, f)
-                file_name = splitext(f)[0]
-                file_guess = guess_type(f)[0]
-                file_type = file_guess.split('/')[0] if file_guess is not None else "unknown"
-                files.append({"path": file_path, "name": file_name, "type": file_type})
-    return {'files': files}
+    if request.method == 'GET':
+        with open('settings.json') as settings_file:
+            settings = json.load(settings_file)
+        search = request.args.get('search')
+        files = []
+        for path in settings['search_paths']:
+            for f in os.listdir(path):
+                if isfile(join(path, f)) and search.lower() in f.lower():
+                    file_path = join(path, f)
+                    file_name = splitext(f)[0]
+                    file_guess = guess_type(f)[0]
+                    file_type = file_guess.split('/')[0] if file_guess is not None else "unknown"
+                    files.append({"path": file_path, "name": file_name, "type": file_type})
+        return {'files': files}
+    
+    if request.method == 'POST':
+        file = request.files.get('file')
+    
+        if not file:
+            print("No file part")
+            flash("No file part")
+            return redirect('/')
+        
+        if file.filename == '':
+            print("No file selected")
+            flash("No file selected")
+            return redirect('/')
+        
+        filename = secure_filename(file.filename)
+        file.save(join('media', filename))
+        return "200"
 
 @app.route('/api/settings', methods=['GET', 'POST'])
 def api_settings():
