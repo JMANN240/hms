@@ -9,11 +9,19 @@
 <div class="card">
     <h1>Settings</h1>
     {% for filetype, filecolor in settings.filetypes.items() %}
-    <div class="color-input-div">
+    <div class="subsetting-div">
         <label for="{{filetype}}-color">{{filetype|capitalize}}:</label>
         <input type="color" name='{{filetype}}-color' id='{{filetype}}-color' value="{{filecolor}}">
     </div>
     {% endfor %}
+    <div class="subsetting-div">
+        <label for="search-paths">Search Paths:</label>
+        <input type="text" name='search-paths' id='search-paths' value="{{settings.search_paths}}">
+    </div>
+    <div class="subsetting-div">
+        <label for="client-upload-path">Client Upload Path:</label>
+        <input type="text" name='client-upload-path' id='client-upload-path' value="{{settings.client_upload_path}}">
+    </div>
     <div class="btn" id="save-btn">Save</div>
 </div>
 {% endblock %}

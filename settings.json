@@ -3,10 +3,10 @@
         "audio": "#ff0000", 
         "video": "#00ff40", 
         "image": "#0040ff", 
-        "text": "#ffffff"
+        "text": "#ffff00"
     }, 
     "search_paths": [
         "media"
-    ],
+    ], 
     "client_upload_path": "media"
 }
