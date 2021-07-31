@@ -25,15 +25,13 @@ def media():
     as_attachment = request.args.get('as_attachment') == "true"
     return send_file(filepath, as_attachment=as_attachment)
 
-@app.route('/massmedia', methods=['GET', 'POST'])
+@app.route('/massmedia')
 def massmedia():
-    if request.method == 'POST':
-        files = request.json.get('files')
-    elif request.method == 'GET':
-        files = json.loads(request.args.get('files'))
+    files = json.loads(request.args.get('files'))
     print(files)
     for f in os.listdir('zips'):
-        os.remove(join('zips', f))
+        if (f != '.gitignore'):
+            os.remove(join('zips', f))
     zipFilepath = f'zips/{round(time.time())}.zip'
     with ZipFile(zipFilepath, 'w') as zipObj:
         for file in files:
