@@ -1,10 +1,10 @@
-import os, pathlib, json
+import os, pathlib, json, time
 from os.path import isfile, join, splitext
 from mimetypes import guess_type
 from flask import Flask, send_file, request, flash, redirect
 from flask.templating import render_template
 from werkzeug.utils import secure_filename
-
+from zipfile import ZipFile
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -24,6 +24,21 @@ def media():
     filepath = request.args.get('filepath')
     as_attachment = request.args.get('as_attachment') == "true"
     return send_file(filepath, as_attachment=as_attachment)
+
+@app.route('/massmedia', methods=['GET', 'POST'])
+def massmedia():
+    if request.method == 'POST':
+        files = request.json.get('files')
+    elif request.method == 'GET':
+        files = json.loads(request.args.get('files'))
+    print(files)
+    for f in os.listdir('zips'):
+        os.remove(join('zips', f))
+    zipFilepath = f'zips/{round(time.time())}.zip'
+    with ZipFile(zipFilepath, 'w') as zipObj:
+        for file in files:
+            zipObj.write(file)
+    return send_file(zipFilepath, as_attachment=True)
 
 @app.route('/api/media', methods=['GET', 'POST'])
 def api_media():
@@ -58,7 +73,7 @@ def api_media():
             flash("No file selected")
             return redirect('/')
         
-        filename = file.filename
+        filename = secure_filename(file.filename)
         file.save(join(settings['client_upload_path'], filename))
         return "200"
 

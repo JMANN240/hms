@@ -11,6 +11,8 @@ var load_media = () => {
                         <div style="width: 100%; margin: 1vw; display: flex; flex-direction: row; justify-content: space-around;">
                             <a href="/media?filepath=${file.path}&as_attachment=false" class="btn">View</a>
                             <a href="/media?filepath=${file.path}&as_attachment=true" class="btn">Download</a>
+                            <input class="selection" type="checkbox" id="${file.path}">
+                            <label for="${file.path}" class="${file.type}"></label>
                         </div>
                     </div>
                 `);
@@ -65,3 +67,52 @@ $('#new-file').on('change', (e) => {
         });
     }
 });
+
+$(document).on('input', '.selection', (e) => {
+    var selected = $('.selection:checked');
+    if (selected.length > 0) {
+        $('#download-all').css('display', 'inline-block');
+    } else {
+        $('#download-all').css('display', 'none');
+    }
+    var files = [];
+    for (var select of selected) {
+        files.push(select.id);
+    }
+    $('#download-all').attr('href', `/massmedia?files=${JSON.stringify(files)}`);
+})
+
+/*$('#download-all').on('click', (e) => {
+    var selected = $('.selection:checked');
+    var files = [];
+    for (var select of selected) {
+        files.push(select.id);
+    }
+    console.log(files);
+    $.ajax({
+        type: 'POST',
+        url: '/massmedia',
+        contentType: 'application/json',
+        data: JSON.stringify(
+            {
+                files: files
+            }
+        ),
+        success: (res) => {
+            var filename = 'files.zip';
+            var blob = new Blob([res], {type: "application/x-zip-compressed"});
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+        },
+        failure: (res) => {
+            console.log("fail");
+        }
+    });
+})*/
