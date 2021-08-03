@@ -51,7 +51,7 @@ def api_media():
                 if isfile(join(path, f)) and search.lower() in f.lower():
                     file_path = join(path, f)
                     file_name = splitext(f)[0]
-                    file_guess = guess_type(f)[0]
+                    file_guess = guess_type(f, strict=false)[0]
                     file_type = file_guess.split('/')[0] if file_guess is not None else "unknown"
                     other_files = [other for other in pathfiles if splitext(other)[0] == file_name and other != f]
                     if file_type == "image":
