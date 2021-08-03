@@ -46,13 +46,22 @@ def api_media():
         search = request.args.get('search')
         files = []
         for path in settings['search_paths']:
-            for f in os.listdir(path):
+            pathfiles = os.listdir(path)
+            for f in pathfiles:
                 if isfile(join(path, f)) and search.lower() in f.lower():
                     file_path = join(path, f)
                     file_name = splitext(f)[0]
                     file_guess = guess_type(f)[0]
                     file_type = file_guess.split('/')[0] if file_guess is not None else "unknown"
-                    files.append({"path": file_path, "name": file_name, "type": file_type})
+                    other_files = [other for other in pathfiles if splitext(other)[0] == file_name and other != f]
+                    if file_type == "image":
+                        if len(other_files) == 0:
+                            files.append({"path": file_path, "name": file_name, "type": file_type, "thumbnail": file_path})
+                    else:
+                        if len(other_files) > 0:
+                            files.append({"path": file_path, "name": file_name, "type": file_type, "thumbnail": join(path, other_files[0])})
+                        else:
+                            files.append({"path": file_path, "name": file_name, "type": file_type, "thumbnail": None})
         return {'files': files}
     
     if request.method == 'POST':
