@@ -1,3 +1,8 @@
+function escapeURL(unsafe) {
+    return unsafe
+         .replace(/&/g, "%26")
+}
+
 var load_media = () => {
     $.ajax({
         type: 'GET',
@@ -8,11 +13,11 @@ var load_media = () => {
             for (let file of res.files) {
                 $('#media').append(`
                     <div class="card ${file.type}" style="flex-direction: column;">
-                        ${file.thumbnail == null ? "" : `<img style="width: 20ch;" src="/media?filepath=${file.thumbnail}&as_attachment=false"></img>`}
+                        ${file.thumbnail == null ? "" : `<img style="width: 20ch;" src="/media?filepath=${escapeURL(file.thumbnail)}&as_attachment=false"></img>`}
                         ${file.name}
                         <div style="width: 100%; margin: 1vw; display: flex; flex-direction: row; justify-content: space-around;">
-                            <a href="/media?filepath=${file.path}&as_attachment=false" class="btn">View</a>
-                            <a href="/media?filepath=${file.path}&as_attachment=true" class="btn">Download</a>
+                            <a href="/media?filepath=${escapeURL(file.path)}&as_attachment=false" class="btn">View</a>
+                            <a href="/media?filepath=${escapeURL(file.path)}&as_attachment=true" class="btn">Download</a>
                             <input class="selection" type="checkbox" id="${file.path}">
                             <label for="${file.path}" class="${file.type}"></label>
                         </div>
